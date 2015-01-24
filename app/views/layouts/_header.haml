@@ -16,6 +16,8 @@
             = link_to "Home", root_url
 
           - if user_signed_in?
+            %li
+              = link_to 'Create Trip', new_trip_path
             %li.dropdown
               %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
                 = current_user.email

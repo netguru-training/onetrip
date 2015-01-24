@@ -1,15 +1,18 @@
 class TripsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
-
-  expose(:trip)
+  expose(:trip, params: :trip_params)
   expose(:trips)
-
+  expose(:trip_by_code) { Trip.find_by_code(params[:trip_code]).first }
+  
   def index
   end
 
   def show
   end
-
+  
+  def share_show
+  end
+  
   def new
   end
 
@@ -54,5 +57,4 @@ class TripsController < ApplicationController
                                     :owner_id, 
                                     :contributors_limit )
     end
-
 end
