@@ -1,0 +1,32 @@
+%nav.navbar.navbar-default
+  .container-fluid
+    .container
+      .navbar-header
+        %button.navbar-toggle.collapsed{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+          %span.sr-only Toggle navigation
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        = link_to "OneTrip", root_url, class: "navbar-brand" 
+      #bs-example-navbar-collapse-1.collapse.navbar-collapse
+        %ul.nav.navbar-nav.navbar-right
+          %li
+            = link_to "Home", root_url
+          
+          - if user_signed_in?
+            %li.dropdown
+              %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                = current_user.email
+                %span.caret
+              %ul.dropdown-menu{:role => "menu"}
+                %li
+                  = link_to "Settings", edit_user_registration_path
+                %li
+                  = link_to "Logout", destroy_user_session_path, method: :delete
+          - else
+            %li
+              = link_to "Sign up", new_user_registration_path
+            %li
+              = link_to "Sign in", new_user_session_path
+            %li
+              = link_to "Sign in with Facebook", "/auth/facebook"
