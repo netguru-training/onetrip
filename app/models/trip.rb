@@ -4,12 +4,13 @@ class Trip < ActiveRecord::Base
   geocoded_by :start_address, latitude: :start_latitude, longitude: :start_longitude
   geocoded_by :end_address, latitude: :end_latitude, longitude: :end_longitude
 
-  after_validation :geocode  
-
+  after_validation :geocode
+  
   belongs_to :owner, class_name: 'User'
   has_many :users, through: :trip_memberships
   has_many :trip_memberships
 
+  
   validates_presence_of :title,
                         :description,
                         :start_address,
@@ -20,7 +21,15 @@ class Trip < ActiveRecord::Base
 
   scope :find_by_code, ->(trip_code) { where(trip_code: trip_code) }
   
+  validate :validate_max_members
+  
   def generate_code
     self.trip_code = SecureRandom.hex(10)
+  end
+  
+  def validate_max_members
+    if self.contributors_limit >= self.users.size
+      errors.add(:title, 'Max limit reached!')
+    end
   end
 end

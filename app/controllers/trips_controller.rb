@@ -19,16 +19,12 @@ class TripsController < ApplicationController
   def edit
   end
   
-  def join_trip
-    if trip.users.count >= trip.contributors_limit || current_user == trip.first.owner
-      redirect_to trip, notice: "You can't join this trip"
+  def join_trip  
+    trip.trip_memberships.build(user_id: current_user.id)
+    if trip.save
+      redirect_to trip, notice: 'You joined'
     else
-      trip.trip_memberships.build(user_id: current_user.id)
-      if trip.save
-        redirect_to trip, notice: 'You joined'
-      else
-        redirect_to trip, notice: 'Error'
-      end
+      redirect_to trip, notice: 'Error'
     end
   end
 
