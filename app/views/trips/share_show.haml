@@ -1,36 +1,5 @@
-%p#notice= notice
+= render partial: 'show', locals: { trip: trip_by_code }
 
-%p
-  %b Title:
-  = trip_by_code.title
-%p
-  %b Description:
-  = trip_by_code.description
-%p
-  %b Start latitude:
-  = trip_by_code.start_latitude
-%p
-  %b Start longitude:
-  = trip_by_code.start_longitude
-%p
-  %b End latitude:
-  = trip_by_code.end_latitude
-%p
-  %b End longitude:
-  = trip_by_code.end_longitude
-%p
-  %b Start time:
-  = trip_by_code.start_time
-%p
-  %b End time:
-  = trip_by_code.end_time
-%p
-  %b Contributors limit
-  = trip_by_code.contributors_limit
-%p
-  %b Owner:
-  = trip_by_code.owner_id
+= link_to 'Join trip!', join_trip_trip_path(trip_by_code), method: :post
 
-= link_to 'Edit', edit_trip_path(trip_by_code)
-\|
 = link_to 'Back', trips_path

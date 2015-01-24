@@ -1,0 +1,36 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = trip.title
+%p
+  %b Description:
+  = trip.description
+%p
+  %b Start latitude:
+  = trip.start_latitude
+%p
+  %b Start longitude:
+  = trip.start_longitude
+%p
+  %b End latitude:
+  = trip.end_latitude
+%p
+  %b End longitude:
+  = trip.end_longitude
+%p
+  %b Start time:
+  = trip.start_time
+%p
+  %b End time:
+  = trip.end_time
+%p
+  %b Contributors limit
+  = trip.contributors_limit
+  
+%h4 Trip Members
+%ul
+  - trip.users.each do |u|
+    %li= u.email
+
+
