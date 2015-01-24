@@ -7,12 +7,14 @@
           %span.icon-bar
           %span.icon-bar
           %span.icon-bar
-        = link_to "OneTrip", root_url, class: "navbar-brand" 
+        = link_to "OneTrip", root_url, class: "navbar-brand"
+        .navbar-text
+          You will never forget this trip, never.
       #bs-example-navbar-collapse-1.collapse.navbar-collapse
         %ul.nav.navbar-nav.navbar-right
           %li
             = link_to "Home", root_url
-          
+
           - if user_signed_in?
             %li.dropdown
               %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
