@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyText
+  start_latitude: 1.5
+  start_longitude: 1.5
+  end_latitude: 1.5
+  end_longitude: 1.5
+  start_time: 2015-01-24 10:48:25
+  end_time: 2015-01-24 10:48:25
+  owner_id: 1
+
+two:
+  title: MyString
+  description: MyText
+  start_latitude: 1.5
+  start_longitude: 1.5
+  end_latitude: 1.5
+  end_longitude: 1.5
+  start_time: 2015-01-24 10:48:25
+  end_time: 2015-01-24 10:48:25
+  owner_id: 1

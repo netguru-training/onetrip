@@ -9,6 +9,9 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'bootstrap-sass'
 gem 'haml-rails'
 
+gem 'decent_exposure'
+gem 'geocoder', github: 'alexreisner/geocoder'
+
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
