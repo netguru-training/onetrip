@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-
+  post 'auth/:provider/callback', to: 'sessions#create'
+  get 'auth/failure', to: redirect('/')
+  delete 'signout', to: 'sessions#destroy', as: 'signout'
+  
   devise_for :users
 
   # The priority is based upon order of creation: first created -> highest priority.
