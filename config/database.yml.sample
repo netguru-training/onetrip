@@ -1,0 +1,26 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  timeout: 5000
+
+development:
+  <<: *default
+  database: onetrip_development
+  username: postgres
+  password: postgres
+  port: 5432
+
+test:
+  <<: *default
+  database: onetrip_test
+  username: postgres
+  password: postgres
+  port: 5432
+
+production:
+  <<: *default
+  database: onetrip_production
+  username: <%= ENV['ONETRIP_USER'] %>
+  password: <%= ENV['ONETRIP_USER_PASSWORD'] %>
+  port: 5432
