@@ -1,4 +1,6 @@
 class TripsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
+
   expose(:trip)
   expose(:trips)
 
@@ -15,7 +17,7 @@ class TripsController < ApplicationController
   end
 
   def create
-    trip = Trip.new(trip_params)
+    trip = current_user.owned_trips.build(trip_params)
 
     if trip.save
       redirect_to trip, notice: 'Trip was successfully created.'

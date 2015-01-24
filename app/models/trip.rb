@@ -4,7 +4,16 @@ class Trip < ActiveRecord::Base
 
   after_validation :geocode  
 
-  has_one :owner, class_name: 'User'
-  # has_many_and_belongs_to_many :contributors, class_name: 'User'
+  belongs_to :owner, class_name: 'User'
+  has_many :users, through: :trip_memberships
+  has_many :trip_memberships
+
+  validates_presence_of :title,
+                        :description,
+                        :start_address,
+                        :end_address,
+                        :contributors_limit,
+                        :start_time,
+                        :end_time
 
 end

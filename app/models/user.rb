@@ -7,7 +7,11 @@ class User < ActiveRecord::Base
           :validatable,
           :omniauthable,
           :omniauth_providers => [:facebook]
-  
+
+  has_many :owned_trips, class_name: 'Trip', foreign_key: :owner_id
+  has_many :trips, through: :trip_memberships
+  has_many :trip_memberships
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
