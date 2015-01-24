@@ -7,3 +7,6 @@
 
 # Ignore database config
 /config/database.yml
+
+# Ignore secrets 
+/config/secrets.yml
