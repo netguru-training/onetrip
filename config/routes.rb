@@ -1,10 +1,8 @@
 Rails.application.routes.draw do
+
   resources :trips
   
-  post 'auth/:provider/callback', to: 'sessions#create'
-  get 'auth/failure', to: redirect('/')
-  delete 'signout', to: 'sessions#destroy', as: 'signout'
+  root to: 'home#show'
   
-  devise_for :users
-
+  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
 end
