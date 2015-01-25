@@ -20,12 +20,13 @@ class TripsController < ApplicationController
   def edit
   end
   
-  def join_trip  
-    trip.trip_memberships.build(user_id: current_user.id)
-    if trip.save
-      redirect_to trip, notice: 'You joined'
+  def join_trip
+    trip_by_code.users << current_user
+    binding.pry
+    if trip_by_code.save
+      redirect_to trip_by_code, notice: 'You joined'
     else
-      redirect_to trip, notice: 'Error'
+      redirect_to trip_by_code, notice: 'Error'
     end
   end
 

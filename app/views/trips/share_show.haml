@@ -1,5 +1,5 @@
 = render partial: 'show', locals: { trip: trip_by_code }
 
-= link_to 'Join trip!', join_trip_trip_path(trip_by_code), method: :post
+= link_to 'Join trip!', join_trip_path(trip_by_code.trip_code), method: :post
 
 = link_to 'Back', trips_path

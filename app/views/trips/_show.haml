@@ -27,10 +27,14 @@
 %p
   %b Contributors limit
   = trip.contributors_limit
-  
+
 %h4 Trip Members
-%ul
-  - trip.users.each do |u|
-    %li= u.email
+- if trip.users.count > 0  
+  %ul
+    - trip.users.each do |u|
+      %li= u.email
+- else
+  %p
+    This trip is sad.
 
 
