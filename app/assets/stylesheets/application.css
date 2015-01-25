@@ -11,6 +11,8 @@
  * file per style scope.
  *
  *= require chosen
+ *= require bootstrap-checkbox
  *= require main
+ *= require trips
  *= require_self
  */

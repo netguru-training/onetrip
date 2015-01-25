@@ -16,12 +16,7 @@
 //= require bootstrap
 //= require moment
 //= require bootstrap-datetimepicker
+//= require bootstrap-checkbox
 //= require chosen-jquery
 //= require main
 //= require trips
-
-$(function() {
-  $("#trips-search input[type='checkbox']").on("change", function(){
-    $("#trips-search").submit();
-  });
-});

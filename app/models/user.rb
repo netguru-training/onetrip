@@ -43,5 +43,9 @@ class User < ActiveRecord::Base
 
   def to_s
     self.name || self.email
+
+  def all_trips
+    [owned_trips << trips].uniq! || []
   end
+
 end

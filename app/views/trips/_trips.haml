@@ -1,29 +1,4 @@
 - trips.each do |trip|
-  %br
-    = trip.title
-  / %br
-  /   = trip.description
-  / %br
-  /   = trip.start_latitude
-  / %br
-  /   = trip.start_longitude
-  / %br
-  /   = trip.end_latitude
-  / %br
-  /   = trip.end_longitude
-  / %br
-  /   = trip.start_time
-  / %br
-  /   = trip.end_time
-  / %br
-  /   = trip.contributors_limit
-  / %br
-  /   = trip.owner_id
-  %br
-    = link_to 'Show', share_trip_path(trip.trip_code)
-  / %br
-  /   = link_to 'Edit', edit_trip_path(trip)
-  / %br
-  /   = link_to 'Destroy', trip, :method => :delete, :data => { :confirm => 'Are you sure?' }
+  = render trip
 
 = will_paginate trips, renderer: BootstrapPagination::Rails

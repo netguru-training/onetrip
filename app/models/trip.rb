@@ -35,8 +35,14 @@ class Trip < ActiveRecord::Base
     if category_ids.present?
       joins(:trip_categories).where(trip_categories: { category_id: category_ids })
     else
-      all
+      order("start_time ASC")
     end
+  end
+
+  def generate_code
+    begin
+      self.trip_code = SecureRandom.hex(10)
+    end while Trip.exists?(trip_code: trip_code)
   end
 
   private
@@ -49,12 +55,6 @@ class Trip < ActiveRecord::Base
     def dates_chronological
       return if !start_time.present? || !end_time.present?
       errors.add(:end_time, 'must be later than start date') if (start_time > end_time)
-    end
-
-    def generate_code
-      begin
-        self.trip_code = SecureRandom.hex(10)
-      end while Trip.exists?(trip_code: trip_code)
     end
 
     def validate_max_members
