@@ -1,5 +1,6 @@
 class Task < ActiveRecord::Base
   validates :content, presence: :true
   belongs_to :user
-  belongs_to :category
+  has_many :trip_memeberships, through: :task_trip_membership
+  has_many :task_trip_membership
 end

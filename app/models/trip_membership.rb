@@ -1,6 +1,8 @@
 class TripMembership < ActiveRecord::Base
   belongs_to :user
   belongs_to :trip
+  has_many :tasks, through: :task_trip_membership
+  has_many :task_trip_membership
 
   validates_presence_of :user_id, :trip_id
 

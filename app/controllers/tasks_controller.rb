@@ -4,6 +4,7 @@ class TasksController < ApplicationController
   expose(:category)
   expose(:categories)
   
+  
   def create
     if task.save
       redirect_to task, notice: 'Task was successfully created.'
@@ -13,7 +14,6 @@ class TasksController < ApplicationController
   end
 
   def update
-    task.category = category
     if task.save
       redirect_to task, notice: 'Task was successfully updated.'
     else

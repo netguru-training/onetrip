@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   
   has_many :trips, through: :trip_memberships
   has_many :trip_memberships
+  has_many :tasks, dependent: :destroy
 
   def self.from_omniauth(auth)
     return_user = self.where(email: auth.info.email).first

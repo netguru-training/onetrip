@@ -29,8 +29,13 @@ class TripsController < ApplicationController
   def edit
   end
   
+  def mark_as_done
+    trip.task_trip_membership.build(task, trip_membership(current_user))
+  end
+  
   def join_trip
     trip_by_code.users << current_user
+    
     if trip_by_code.save
       render :share_show, notice: 'You joined'
     else
@@ -40,7 +45,7 @@ class TripsController < ApplicationController
 
   def create
     trip.owner = current_user
-
+    
     if trip.save
       redirect_to trip, notice: 'Trip was successfully created.'
     else

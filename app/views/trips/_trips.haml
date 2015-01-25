@@ -19,8 +19,8 @@
   /   = trip.contributors_limit
   / %br
   /   = trip.owner_id
-  / %br
-  /   = link_to 'Show', trip
+  %br
+    = link_to 'Show', share_trip_path(trip.trip_code)
   / %br
   /   = link_to 'Edit', edit_trip_path(trip)
   / %br
