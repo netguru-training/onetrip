@@ -1,39 +1,14 @@
-%h1 Listing trips
-
-%table
-  %thead
-    %tr
-      %th Title
-      %th Description
-      %th Start latitude
-      %th Start longitude
-      %th End latitude
-      %th End longitude
-      %th Start time
-      %th End time
-      %th Contributors limit
-      %th Owner
-      %th
-      %th
-      %th
-      
-  %tbody
-    - trips.each do |trip|
-      %tr
-        %td= trip.title
-        %td= trip.description
-        %td= trip.start_latitude
-        %td= trip.start_longitude
-        %td= trip.end_latitude
-        %td= trip.end_longitude
-        %td= trip.start_time
-        %td= trip.end_time
-        %td= trip.contributors_limit
-        %td= trip.owner_id
-        %td= link_to 'Show', trip
-        %td= link_to 'Edit', edit_trip_path(trip)
-        %td= link_to 'Destroy', trip, :method => :delete, :data => { :confirm => 'Are you sure?' }
+%h1 Listing trips      
 
 %br
+
+= form_tag trips_path, method: :get, remote: true, id: "trips-search" do
+  - Category.all.each do |category|
+    / - binding.pry
+    = check_box_tag 'category_ids[]', category.id, stored_category_ids.include?(category.id)
+    = category.name
+
+#trips
+  = render 'trips'
 
 = link_to 'New Trip', new_trip_path

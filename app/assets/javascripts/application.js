@@ -19,3 +19,9 @@
 //= require chosen-jquery
 //= require main
 //= require trips
+
+$(function() {
+  $("#trips-search input[type='checkbox']").on("change", function(){
+    $("#trips-search").submit();
+  });
+});

@@ -11,6 +11,7 @@ gem 'momentjs-rails', '>= 2.8.1'
 gem 'bootstrap3-datetimepicker-rails', '~> 3.1.3'
 gem 'haml-rails'
 gem 'chosen-rails'
+gem 'will_paginate-bootstrap'
 
 gem 'decent_exposure'
 gem 'geocoder', github: 'alexreisner/geocoder'

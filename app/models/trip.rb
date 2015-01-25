@@ -31,6 +31,14 @@ class Trip < ActiveRecord::Base
 
   accepts_nested_attributes_for :categories
 
+  def self.search(category_ids)
+    if category_ids.present?
+      joins(:trip_categories).where(trip_categories: { category_id: category_ids })
+    else
+      all
+    end
+  end
+
   private
 
     def correct_datetime
@@ -39,7 +47,7 @@ class Trip < ActiveRecord::Base
     end
 
     def dates_chronological
-      return unless start_time.present? || end_time.present?
+      return if !start_time.present? || !end_time.present?
       errors.add(:end_time, 'must be later than start date') if (start_time > end_time)
     end
 

@@ -5,8 +5,16 @@ class TripsController < ApplicationController
   expose(:trips)
   expose(:trip_by_code) { Trip.find_by_code(params[:trip_code]).first }
   expose(:categories) { trip.categories }
+  expose(:stored_category_ids)
   
   def index
+    self.stored_category_ids = params[:category_ids] || []
+
+    self.trips = Trip.search(stored_category_ids).order("start_time ASC").page(params[:page]).per_page(5)
+    respond_to do |format|
+      format.html
+      format.js { render layout: false }
+    end
   end
 
   def show
@@ -68,5 +76,13 @@ class TripsController < ApplicationController
                                     :contributors_limit,
                                     :category_ids => []
                                   )
+    end
+
+    def stored_category_ids
+      session[:category_ids] || []
+    end
+
+    def stored_category_ids=(ids)
+      session[:category_ids] = ids
     end
 end

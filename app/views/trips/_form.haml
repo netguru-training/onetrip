@@ -45,7 +45,6 @@
       = f.text_field :end_address, class: "form-control"
 
     .form-group
-
       = f.collection_select :category_ids, Category.all ,:id, :name, { include_blank: true }, { class: 'chosen-select', multiple: true, data: { placeholder: '' } }
 
     .form-group
