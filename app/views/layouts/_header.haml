@@ -18,6 +18,8 @@
           - if user_signed_in?
             %li
               = link_to "New trip", new_trip_path
+            %li
+              = link_to 'Show trips', trips_path
             %li.dropdown
               %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
                 = current_user.email
