@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     end
   end
   
-  get 'trip/:trip_code' => 'trips#share_show'
+  get 'trip/:trip_code' => 'trips#share_show', as: 'share_trip'
   
   root to: 'home#index'
   
