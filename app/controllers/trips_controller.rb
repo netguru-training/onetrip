@@ -24,9 +24,9 @@ class TripsController < ApplicationController
   def join_trip
     trip_by_code.users << current_user
     if trip_by_code.save
-      redirect_to share_trip_path(trip_by_code.trip_code), notice: 'You joined'
+      render :share_show, notice: 'You joined'
     else
-      redirect_to share_trip_path(trip_by_code.trip_code), notice: 'Error'
+      render :share_show, notice: 'Error'
     end
   end
 
