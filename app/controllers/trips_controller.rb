@@ -63,7 +63,6 @@ class TripsController < ApplicationController
                                     :end_time, 
                                     :start_address,
                                     :end_address,
-                                    :owner_id, 
                                     :contributors_limit )
     end
 end
