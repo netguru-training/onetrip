@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(version: 20150125135337) do
   end
 
   create_table "completed_trip_tasks", force: :cascade do |t|
-    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "trip_id"
