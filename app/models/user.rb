@@ -8,7 +8,8 @@ class User < ActiveRecord::Base
           :omniauthable,
           :omniauth_providers => [:facebook]
 
-  has_many :owned_trips, class_name: 'Trip', foreign_key: :owner_id
+  has_many :owned_trips, class_name: 'Trip', foreign_key: :owner_id, dependent: :destroy
+  
   has_many :trips, through: :trip_memberships
   has_many :trip_memberships
 

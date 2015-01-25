@@ -7,8 +7,12 @@ class Trip < ActiveRecord::Base
   after_validation :geocode
   
   belongs_to :owner, class_name: 'User'
+  
   has_many :users, through: :trip_memberships
-  has_many :trip_memberships
+  has_many :trip_memberships, dependent: :destroy
+  
+  has_many :categories, through: :trip_categories
+  has_many :trip_categories, dependent: :destroy
 
   
   validates_presence_of :title,
@@ -25,6 +29,8 @@ class Trip < ActiveRecord::Base
   
   validate :correct_datetime
   validate :dates_chronological
+
+  accepts_nested_attributes_for :categories
 
   private
 

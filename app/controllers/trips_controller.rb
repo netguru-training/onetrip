@@ -4,6 +4,7 @@ class TripsController < ApplicationController
   expose(:trip, attributes: :trip_params)
   expose(:trips)
   expose(:trip_by_code) { Trip.find_by_code(params[:trip_code]).first }
+  expose(:categories) { trip.categories }
   
   def index
   end
@@ -22,16 +23,16 @@ class TripsController < ApplicationController
   
   def join_trip
     trip_by_code.users << current_user
-    binding.pry
     if trip_by_code.save
-      redirect_to trip_by_code, notice: 'You joined'
+      redirect_to share_trip_path(trip_by_code.trip_code), notice: 'You joined'
     else
-      redirect_to trip_by_code, notice: 'Error'
+      redirect_to share_trip_path(trip_by_code.trip_code), notice: 'Error'
     end
   end
 
   def create
-    trip = current_user.owned_trips.build(trip_params)
+    trip.owner = current_user
+
     if trip.save
       redirect_to trip, notice: 'Trip was successfully created.'
     else
@@ -64,6 +65,8 @@ class TripsController < ApplicationController
                                     :end_time, 
                                     :start_address,
                                     :end_address,
-                                    :contributors_limit )
+                                    :contributors_limit,
+                                    :categories_ids => []
+                                  )
     end
 end
