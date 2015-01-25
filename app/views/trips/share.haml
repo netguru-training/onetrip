@@ -11,8 +11,8 @@
     %ul
     - trip_by_code.categories.each do |c|
       - c.tasks.each do |t|
-        %li= t.content
         - if t.done?(t.id, trip_by_code.id, current_user.id)
-          %li Done
+          %li.strike= t.content
         - else
+          %li= t.content
           %li= button_to 'Mark as done', { controller: "trips", action: "mark_as_done", task_id: t.id, trip_id: trip_by_code.id, method: :post }
