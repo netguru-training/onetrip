@@ -12,4 +12,4 @@
     - trip_by_code.categories.each do |c|
       - c.tasks.each do |t|
         %li= t.content
-        %li= link_to 'Mark as done', mark_as_done_task_path(t), method: :post
+        %li= button_to 'Mark as done', { controller: "trips", action: "mark_as_done", task_id: t.id, trip_id: trip_by_code.id, method: :post }

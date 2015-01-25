@@ -30,7 +30,8 @@ class TripsController < ApplicationController
   end
 
   def mark_as_done
-    trip.task_trip_membership.build(task, trip_membership(current_user))
+    CompletedTripTask.create(task_id: params[:task_id], trip_id: params[:trip_id], user_id: current_user.id)
+    redirect_to share_trip_path(trip_code: trip_by_code.trip_code), notice: 'Task marked as done'
   end
 
   def join_trip

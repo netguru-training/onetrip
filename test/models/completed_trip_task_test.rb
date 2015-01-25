@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class TaskTripMembershipTest < ActiveSupport::TestCase
+class CompletedTripTaskTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

@@ -14,6 +14,8 @@ class Trip < ActiveRecord::Base
   has_many :categories, through: :trip_categories
   has_many :trip_categories, dependent: :destroy
 
+  belongs_to :completed_trip_tasks
+  
   validates_presence_of :title,
                         :description,
                         :start_address,
