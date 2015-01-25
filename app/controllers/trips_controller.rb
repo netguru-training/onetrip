@@ -31,7 +31,6 @@ class TripsController < ApplicationController
 
   def create
     trip = current_user.owned_trips.build(trip_params)
-
     if trip.save
       redirect_to trip, notice: 'Trip was successfully created.'
     else

@@ -42,8 +42,8 @@ class Trip < ActiveRecord::Base
     end
     
     def validate_max_members
-      if self.contributors_limit >= self.users.size
-        errors.add(:title, 'Max limit reached!')
+      if self.contributors_limit <= self.users.size
+        errors.add(:contributors_limit, 'Max limit reached!')
       end
     end
 
