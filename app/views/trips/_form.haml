@@ -8,15 +8,15 @@
           %li= msg
 
   .col-sm-6
-    
+
     .form-group
       = f.label :title
       = f.text_field :title, class: "form-control"
-    
+
     .form-group
       = f.label :description
       = f.text_area :description, class: "form-control"
-    
+
     .form-group
       = f.label :start_time
       .datetimepicker.input-append.date
@@ -30,11 +30,11 @@
         = f.text_field :end_time, autocomplete: "off", class: "form-control"
         %span.add-on
           %i{"data-date-icon" => "icon-calendar", "data-time-icon" => "icon-time" }
-  
+
     .form-group
       = f.label :contributors_limit
       = f.number_field :contributors_limit, class: "form-control", min: "0"
-  
+
   .col-sm-6
 
     .form-group
@@ -49,3 +49,18 @@
 
     .form-group
       = f.submit 'Save', class: "btn btn-default"
+
+.row
+  .col-sm-12
+    %table.table
+      %thead
+        %th Name/Email
+        %th Actions
+      %tbody
+        - trip.trip_memberships.each do |trip_membership|
+          %td= trip_membership.user || trip_membership.user
+          %td
+            - unless trip_membership.accepted
+              = button_to 'Accept', accept_trip_membership_path(trip_membership), method: :post
+            - unless trip_membership.rejected
+              = button_to 'Reject', reject_trip_membership_path(trip_membership), method: :post

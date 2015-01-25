@@ -6,7 +6,7 @@ class TripsController < ApplicationController
   expose(:trip_by_code) { Trip.find_by_code(params[:trip_code]).first }
   expose(:categories) { trip.categories }
   expose(:stored_category_ids)
-  
+
   def index
     self.stored_category_ids = params[:category_ids] || []
 
@@ -19,33 +19,34 @@ class TripsController < ApplicationController
 
   def show
   end
-  
-  def share_show
+
+  def share
   end
-  
+
   def new
   end
 
   def edit
   end
-  
+
   def mark_as_done
     trip.task_trip_membership.build(task, trip_membership(current_user))
   end
-  
+
   def join_trip
-    trip_by_code.users << current_user
-    
+    trip_by_code.trip_memberships.build(user: current_user)
+
     if trip_by_code.save
-      render :share_show, notice: 'You joined'
+      redirect_to share_trip_path(trip_code: trip_by_code.trip_code), notice: 'You joined'
     else
-      render :share_show, notice: 'Error'
+      flash[:danger] = 'You cannot join this trip'
+      redirect_to share_trip_path(trip_code: trip_by_code.trip_code)
     end
   end
 
   def create
     trip.owner = current_user
-    
+
     if trip.save
       redirect_to trip, notice: 'Trip was successfully created.'
     else
@@ -68,14 +69,14 @@ class TripsController < ApplicationController
 
   private
     def trip_params
-      params.require(:trip).permit( :title, 
-                                    :description, 
-                                    :start_latitude, 
-                                    :start_longitude, 
-                                    :end_latitude, 
-                                    :end_longitude, 
-                                    :start_time, 
-                                    :end_time, 
+      params.require(:trip).permit( :title,
+                                    :description,
+                                    :start_latitude,
+                                    :start_longitude,
+                                    :end_latitude,
+                                    :end_longitude,
+                                    :start_time,
+                                    :end_time,
                                     :start_address,
                                     :end_address,
                                     :contributors_limit,

@@ -8,4 +8,18 @@ class TripMembership < ActiveRecord::Base
 
   validates_uniqueness_of :user_id, scope: :trip_id
 
+  scope :accepted, -> { where(accepted: true) }
+  scope :rejected, -> { where(accepted: true) }
+
+  def accept!
+    self.accepted = true
+    self.rejected = false
+    self.save
+  end
+
+  def reject!
+    self.rejected = true
+    self.accepted = false
+    self.save
+  end
 end
