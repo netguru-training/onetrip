@@ -1,10 +1,7 @@
 class Trip < ActiveRecord::Base
   before_create :generate_code
 
-  geocoded_by :start_address, latitude: :start_latitude, longitude: :start_longitude
-  geocoded_by :end_address, latitude: :end_latitude, longitude: :end_longitude
-
-  after_validation :geocode
+  before_validation :geocode_everything
 
   belongs_to :owner, class_name: 'User'
 
@@ -15,7 +12,7 @@ class Trip < ActiveRecord::Base
   has_many :trip_categories, dependent: :destroy
 
   has_many :completed_trip_tasks
-  
+
   validates_presence_of :title,
                         :description,
                         :start_address,
@@ -48,6 +45,11 @@ class Trip < ActiveRecord::Base
   end
 
   private
+
+  def geocode_everything
+    self.start_latitude, self.start_longitude = Geocoder.coordinates(self.start_address)
+    self.end_latitude, self.end_longitude = Geocoder.coordinates(self.end_address)
+  end
 
     def correct_datetime
       errors.add(:start_time, 'must be a valid datetime') if ((DateTime.parse(start_time.to_s) rescue ArgumentError) == ArgumentError)
