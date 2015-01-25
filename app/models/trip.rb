@@ -13,7 +13,6 @@ class Trip < ActiveRecord::Base
   
   has_many :categories, through: :trip_categories
   has_many :trip_categories, dependent: :destroy
-
   
   validates_presence_of :title,
                         :description,

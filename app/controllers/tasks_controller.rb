@@ -1,6 +1,8 @@
 class TasksController < ApplicationController
   expose(:task, attributes: :task_params)
   expose(:tasks)
+  expose(:category)
+  expose(:categories)
   
   def create
     if task.save
@@ -11,6 +13,7 @@ class TasksController < ApplicationController
   end
 
   def update
+    task.category = category
     if task.save
       redirect_to task, notice: 'Task was successfully updated.'
     else
@@ -26,7 +29,7 @@ class TasksController < ApplicationController
   private
   
   def task_params
-    params.require(:task).permit(:content)
+    params.require(:task).permit(:content, :category_id)
   end
   
 end

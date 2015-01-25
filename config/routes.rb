@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  resources :tasks
-
+  
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
 
   resources :trips

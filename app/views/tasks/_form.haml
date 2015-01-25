@@ -6,7 +6,10 @@
         - task.errors.full_messages.each do |msg|
           %li= msg
 
-  .actions
+  .form-group
     = f.label :content
     = f.text_field :content, class: "form-control"
+  .form-group
+    = f.collection_select(:category_id, Category.all, :id, :name)
+  .form-group
     = f.submit 'Save'
