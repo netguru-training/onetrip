@@ -48,7 +48,10 @@ class User < ActiveRecord::Base
   end
 
   def all_trips
-    [owned_trips << trips].uniq! || []
+    all_trips = []
+    all_trips << owned_trips
+    all_trips << trips
+    all_trips.flatten || []
   end
 
 end

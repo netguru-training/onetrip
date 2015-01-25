@@ -105,6 +105,8 @@ GEM
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.6)
+    font-awesome-rails (4.2.0.0)
+      railties (>= 3.2, < 5.0)
     globalid (0.3.0)
       activesupport (>= 4.1.0)
     haml (4.1.0.beta.1)
@@ -258,6 +260,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   decent_exposure
   devise
+  font-awesome-rails
   geocoder!
   haml-rails
   jbuilder (~> 2.0)

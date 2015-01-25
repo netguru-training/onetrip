@@ -7,9 +7,11 @@
           %span.icon-bar
           %span.icon-bar
           %span.icon-bar
-        = link_to "OneTrip", root_url, class: "navbar-brand"
+        = link_to root_url, class: "navbar-brand" do
+          = fa_icon "automobile", text: "OneTrip"
         .navbar-text
-          You will never forget this trip, never.
+          %i
+            You will never forget this trip, never.
       #bs-example-navbar-collapse-1.collapse.navbar-collapse
         %ul.nav.navbar-nav.navbar-right
           %li
@@ -35,8 +37,9 @@
           - else
             
             %li
-              = link_to "Sign up", new_user_registration_path
+              = link_to "Register", new_user_registration_path
             %li
-              = link_to "Sign in", new_user_session_path
+              = link_to "Login", new_user_session_path
             %li
-              = link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook)
+              = link_to user_omniauth_authorize_path(:facebook) do
+                = fa_icon "facebook", text: "Facebook Login"
