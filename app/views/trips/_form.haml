@@ -58,7 +58,7 @@
         %th Actions
       %tbody
         - trip.trip_memberships.each do |trip_membership|
-          %td= trip_membership.user || trip_membership.user
+          %td= trip_membership.user
           %td
             - unless trip_membership.accepted
               = button_to 'Accept', accept_trip_membership_path(trip_membership), method: :post
