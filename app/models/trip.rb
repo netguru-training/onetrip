@@ -44,7 +44,9 @@ class Trip < ActiveRecord::Base
     end
 
     def generate_code
-      self.trip_code = SecureRandom.hex(10)
+      begin
+        self.trip_code = SecureRandom.hex(10)
+      end while Trip.exists?(trip_code: trip_code)
     end
     
     def validate_max_members
