@@ -66,7 +66,7 @@ class TripsController < ApplicationController
                                     :start_address,
                                     :end_address,
                                     :contributors_limit,
-                                    :categories_ids => []
+                                    :category_ids => []
                                   )
     end
 end

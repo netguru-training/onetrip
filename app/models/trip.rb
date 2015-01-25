@@ -40,6 +40,7 @@ class Trip < ActiveRecord::Base
     end
 
     def dates_chronological
+      return unless start_time.present? || end_time.present?
       errors.add(:end_time, 'must be later than start date') if (start_time > end_time)
     end
 
@@ -50,6 +51,7 @@ class Trip < ActiveRecord::Base
     end
     
     def validate_max_members
+      return unless contributors_limit.present?
       if self.contributors_limit <= self.users.size
         errors.add(:contributors_limit, 'Max limit reached!')
       end
