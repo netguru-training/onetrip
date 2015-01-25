@@ -7,6 +7,8 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'bootstrap-sass'
+gem 'momentjs-rails', '>= 2.8.1'
+gem 'bootstrap3-datetimepicker-rails', '~> 3.1.3'
 gem 'haml-rails'
 
 gem 'decent_exposure'
@@ -25,4 +27,5 @@ group :development, :test do
   gem 'spring'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'pry'
 end

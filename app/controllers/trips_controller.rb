@@ -1,5 +1,6 @@
 class TripsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy, :join_trip]
+
   expose(:trip, attributes: :trip_params)
   expose(:trips)
   expose(:trip_by_code) { Trip.find_by_code(params[:trip_code]).first }
@@ -39,7 +40,7 @@ class TripsController < ApplicationController
   end
 
   def update
-    if trip.update(trip_params)
+    if trip.save
       redirect_to trip, notice: 'Trip was successfully updated.'
     else
       render :edit

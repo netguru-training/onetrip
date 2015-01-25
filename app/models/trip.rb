@@ -23,13 +23,28 @@ class Trip < ActiveRecord::Base
   
   validate :validate_max_members
   
-  def generate_code
-    self.trip_code = SecureRandom.hex(10)
-  end
-  
-  def validate_max_members
-    if self.contributors_limit >= self.users.size
-      errors.add(:title, 'Max limit reached!')
+  validate :correct_datetime
+  validate :dates_chronological
+
+  private
+
+    def correct_datetime
+      errors.add(:start_time, 'must be a valid datetime') if ((DateTime.parse(start_time.to_s) rescue ArgumentError) == ArgumentError)      
+      errors.add(:end_time, 'must be a valid datetime') if ((DateTime.parse(end_time.to_s) rescue ArgumentError) == ArgumentError)
     end
-  end
+
+    def dates_chronological
+      errors.add(:end_time, 'must be later than start date') if (start_time > end_time)
+    end
+
+    def generate_code
+      self.trip_code = SecureRandom.hex(10)
+    end
+    
+    def validate_max_members
+      if self.contributors_limit >= self.users.size
+        errors.add(:title, 'Max limit reached!')
+      end
+    end
+
 end
