@@ -8,10 +8,6 @@ class ApplicationController < ActionController::Base
     strategy DecentExposure::StrongParametersStrategy
   end
   
-  decent_configuration do
-    strategy DecentExposure::StrongParametersStrategy
-  end
-  
   private
   
   def configure_permitted_parameters
