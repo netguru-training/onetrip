@@ -22,7 +22,11 @@ class Trip < ActiveRecord::Base
                         :end_time
 
   scope :find_by_code, ->(trip_code) { where(trip_code: trip_code) }
-
+  
+  scope :upcoming, -> { where("? < start_time", Time.now) }
+  scope :in_progress, -> { where("? BETWEEN start_time AND end_time", Time.now) }
+  scope :past, -> { where("? > start_time", Time.now) }
+  
   validate :validate_max_members
 
   validate :correct_datetime
@@ -30,6 +34,10 @@ class Trip < ActiveRecord::Base
 
   accepts_nested_attributes_for :categories
 
+  def without_id
+    new_trip = self.dup
+  end
+  
   def self.search(category_ids)
     if category_ids.present?
       joins(:trip_categories).where(trip_categories: { category_id: category_ids })
@@ -51,21 +59,20 @@ class Trip < ActiveRecord::Base
     self.end_latitude, self.end_longitude = Geocoder.coordinates(self.end_address)
   end
 
-    def correct_datetime
-      errors.add(:start_time, 'must be a valid datetime') if ((DateTime.parse(start_time.to_s) rescue ArgumentError) == ArgumentError)
-      errors.add(:end_time, 'must be a valid datetime') if ((DateTime.parse(end_time.to_s) rescue ArgumentError) == ArgumentError)
-    end
+  def correct_datetime
+    errors.add(:start_time, 'must be a valid datetime') if ((DateTime.parse(start_time.to_s) rescue ArgumentError) == ArgumentError)
+    errors.add(:end_time, 'must be a valid datetime') if ((DateTime.parse(end_time.to_s) rescue ArgumentError) == ArgumentError)
+  end
 
-    def dates_chronological
-      return if !start_time.present? || !end_time.present?
-      errors.add(:end_time, 'must be later than start date') if (start_time > end_time)
-    end
+  def dates_chronological
+    return if !start_time.present? || !end_time.present?
+    errors.add(:end_time, 'must be later than start date') if (start_time > end_time)
+  end
 
-    def validate_max_members
-      return unless contributors_limit.present?
-      if self.contributors_limit <= self.trip_memberships.accepted.size
-        errors.add(:contributors_limit, 'Max limit reached!')
-      end
+  def validate_max_members
+    return unless contributors_limit.present?
+    if self.contributors_limit <= self.trip_memberships.accepted.size
+      errors.add(:contributors_limit, 'Max limit reached!')
     end
-
+  end
 end

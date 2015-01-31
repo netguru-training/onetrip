@@ -53,5 +53,12 @@ class User < ActiveRecord::Base
     all_trips << trips
     all_trips.flatten || []
   end
-
+  
+  def has_trips?
+    owned_trips.exists?
+  end
+  
+  def joined_trips?
+    trip_memberships.exists?
+  end
 end

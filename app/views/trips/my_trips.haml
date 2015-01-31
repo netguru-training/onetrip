@@ -1,0 +1,23 @@
+.col-sm-6
+  %h2 Created by me
+  - if current_user.has_trips?
+    %h3 Upcoming trips
+    = render 'my_trips_list', collection: current_user.owned_trips.upcoming
+    %h3 Trips in progress
+    = render 'my_trips_list', collection: current_user.owned_trips.in_progress
+    %h3 Trips from the past
+    = render 'my_trips_list', collection: current_user.owned_trips.past, type: 'past'
+  - else
+    %p Add some trips!
+
+.col-sm-6
+  %h2 Joined by me
+  - if current_user.joined_trips?
+    %h3 Upcoming trips
+    = render 'my_trips_list', collection: current_user.trips.upcoming
+    %h3 Trips in progress
+    = render 'my_trips_list', collection: current_user.trips.in_progress
+    %h3 Trips from the past
+    = render 'my_trips_list', collection: current_user.trips.past, type: 'past'
+  - else
+    %p Join some trips!

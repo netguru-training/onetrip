@@ -4,7 +4,6 @@
 
 = form_tag trips_path, method: :get, remote: true, id: "trips-search" do
   - Category.all.each do |category|
-    / - binding.pry
     = check_box_tag 'category_ids[]', category.id, stored_category_ids.include?(category.id)
     = category.name
 

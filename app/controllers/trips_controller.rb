@@ -22,7 +22,13 @@ class TripsController < ApplicationController
 
   def share
   end
-
+  
+  def my_trips
+  end
+  
+  def renew
+  end
+  
   def new
   end
 

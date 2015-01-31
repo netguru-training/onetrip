@@ -1,0 +1,7 @@
+%ul
+  - collection.each do |t|
+    %li
+      = t.title
+      = link_to 'Show', trip_path(t)
+      - if defined?(type) && type == 'past'
+        = link_to 'Renew', renew_trip_path(t)
