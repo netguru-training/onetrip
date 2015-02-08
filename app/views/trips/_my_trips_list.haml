@@ -3,5 +3,5 @@
     %li
       = t.title
       = link_to 'Show', trip_path(t)
-      - if defined?(type) && type == 'past'
+      - if t.from_past?
         = link_to 'Renew', renew_trip_path(t)

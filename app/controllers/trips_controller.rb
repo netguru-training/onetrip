@@ -1,5 +1,5 @@
 class TripsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy, :join_trip]
+  before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy, :join_trip, :mark_as_done]
 
   expose(:trip, attributes: :trip_params)
   expose(:trips)

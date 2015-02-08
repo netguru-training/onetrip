@@ -23,9 +23,9 @@ class Trip < ActiveRecord::Base
 
   scope :find_by_code, ->(trip_code) { where(trip_code: trip_code) }
   
-  scope :upcoming, -> { where("? < start_time", Time.now) }
-  scope :in_progress, -> { where("? BETWEEN start_time AND end_time", Time.now) }
-  scope :past, -> { where("? > start_time", Time.now) }
+  scope :upcoming, -> { where('start_time > ?', Time.now) } 
+  scope :in_progress, -> { where('? BETWEEN start_time AND end_time ', Time.now) }
+  scope :past, -> { where('start_time < ?', Time.now) }
   
   validate :validate_max_members
 
@@ -33,9 +33,13 @@ class Trip < ActiveRecord::Base
   validate :dates_chronological
 
   accepts_nested_attributes_for :categories
+  
+  def from_past?
+    start_time < Time.now ? true : false
+  end
 
   def without_id
-    new_trip = self.dup
+    self.dup
   end
   
   def self.search(category_ids)
