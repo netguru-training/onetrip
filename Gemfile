@@ -26,9 +26,17 @@ gem 'devise'
 gem 'omniauth-facebook'
 
 group :development, :test do
+  gem 'rspec-rails', '~> 3.0'
+  gem 'factory_girl_rails'
   gem 'byebug'
   gem 'spring'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'pry'
+end
+
+group :test do
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'faker'
 end
