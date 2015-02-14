@@ -6,7 +6,6 @@ class MessagesController < ApplicationController
   end
   
   def create
-    binding.pry
     message.sender_id = current_user.id
     message.receiver_id = params[:receiver]
     if message.save

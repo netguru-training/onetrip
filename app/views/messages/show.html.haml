@@ -4,3 +4,18 @@
   From: #{message.sender}
 %p
   Content: #{message.content}
+
+%p Send answer
+
+= form_for Message.new do |f|
+  - if message.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(message.errors.count, "error")} prohibited this message from being saved:"
+      %ul
+        - message.errors.full_messages.each do |msg|
+          %li= msg
+  .actions
+    = hidden_field_tag 'receiver', message.sender.id
+    = f.label :content
+    = f.text_area :content
+    = f.submit 'Send'
