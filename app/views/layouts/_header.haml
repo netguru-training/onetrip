@@ -20,8 +20,18 @@
           - if user_signed_in?
             %li
               = link_to 'My trips', my_trips_path
-            %li
-              = link_to 'Messages', my_messages_path
+            %li.dropdown
+              %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", href: "#", role: "button"}
+                Messages
+                %span.caret
+              %ul.dropdown-menu{role: "menu"}  
+                - current_user.received_messages.each do |m|
+                  = link_to m do
+                    %li
+                      %strong= m.sender.name 
+                      %br/
+                      = m.excerpt
+                %li
             %li
               = link_to "New trip", new_trip_path
             %li

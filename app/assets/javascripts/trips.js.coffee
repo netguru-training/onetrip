@@ -7,4 +7,4 @@ $(document).on "ready page:load", ->
 
   $("#show_message_form").click ->
     console.log("ddd")
-    $("#new_message").show()
+    $("#quick_message").show()

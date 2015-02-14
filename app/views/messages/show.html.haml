@@ -1,6 +1,6 @@
 %p#notice= notice
 
-
-= link_to 'Edit', edit_message_path(message)
-\|
-= link_to 'Back', messages_path
+%p
+  From: #{message.sender}
+%p
+  Content: #{message.content}

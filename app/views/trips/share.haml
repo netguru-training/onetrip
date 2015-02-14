@@ -4,12 +4,12 @@
   = link_to 'Join trip!', join_trip_path(trip_by_code.trip_code), method: :post
   
   %div#show_message_form Contact with trip owner
-  = form_for message do |f|
-    = f.text_area :content
-    = hidden_field_tag 'receiver', trip_by_code.owner.id
-
-    .actions
-      = f.submit 'Send'
+  %div#quick_message
+    = form_for message do |f|
+      .actions
+        = f.text_area :content
+        = hidden_field_tag 'receiver', trip_by_code.owner.id
+        = f.submit 'Send'
   
   = link_to 'Back', trips_path
   
