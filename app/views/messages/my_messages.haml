@@ -1,0 +1,5 @@
+- current_user.recieved_messages.each do |m|
+  %div
+    = "Message from: #{m.sender}"
+    %br/
+    = "Message content: #{m.content}"

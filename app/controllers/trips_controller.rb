@@ -6,7 +6,8 @@ class TripsController < ApplicationController
   expose(:trip_by_code) { Trip.find_by_code(params[:trip_code]).first }
   expose(:categories) { trip.categories }
   expose(:stored_category_ids)
-
+  expose(:message)
+  
   def index
     self.stored_category_ids = params[:category_ids] || []
 
