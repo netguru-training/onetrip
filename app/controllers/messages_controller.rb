@@ -8,10 +8,13 @@ class MessagesController < ApplicationController
   def create
     message.sender_id = current_user.id
     message.receiver_id = params[:receiver]
-    if message.save
-      redirect_to message, notice: 'Message was successfully created.'
-    else
-      render :new
+    respond_to do |format|
+      if message.save
+        format.html { redirect_to message, notice: 'Message was successfully created.' }
+        format.js
+      else
+        render :new
+      end
     end
   end
 

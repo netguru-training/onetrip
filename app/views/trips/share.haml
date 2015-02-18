@@ -5,7 +5,7 @@
   
   %div#show_message_form Contact with trip owner
   %div#quick_message
-    = form_for message do |f|
+    = form_for message, remote: :true do |f|
       .actions
         = f.text_area :content
         = hidden_field_tag 'receiver', trip_by_code.owner.id
