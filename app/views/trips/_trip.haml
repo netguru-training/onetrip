@@ -19,7 +19,7 @@
           = user.name
 
       .actions
-        = link_to 'Show', trip, class: "btn btn-primary"
+        = link_to 'Show', share_trip_path(trip.trip_code), class: "btn btn-primary"
         - if user_signed_in? && current_user == trip.owner
           = link_to 'Edit', edit_trip_path(trip), class: "btn btn-info"
           = link_to 'Destroy', trip, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger"
