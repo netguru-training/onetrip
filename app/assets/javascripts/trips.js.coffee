@@ -4,8 +4,10 @@ $(document).on "ready page:load", ->
     minDate: new Date()
     format: "YYYY-MM-D hh:mm"
 
+  $("#quick_message").hide()
+  
   $("#show_message_form").click ->
-    $("#quick_message").show()
+    $("#quick_message").toggle(800)
   
   $("input[type='submit']").click ->
-    $("#quick_message").hide()
+    $("#quick_message").hide(200)

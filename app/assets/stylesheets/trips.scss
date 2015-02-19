@@ -8,5 +8,13 @@
   text-decoration: line-through;
 }
 #quick_message {
-	display: none;
+  margin-top: 5px;
+  display: block;
+  border: 10px solid #337ab7;
+  border-radius: 16px;
+  background: #337ab7;
+  
+  input[type='submit'] {
+    margin: 5px 0;
+  }
 }

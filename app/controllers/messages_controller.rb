@@ -11,7 +11,7 @@ class MessagesController < ApplicationController
     respond_to do |format|
       if message.save
         format.html { redirect_to message, notice: 'Message was successfully created.' }
-        format.js
+        format.js { render layout: false }
       else
         render :new
       end
